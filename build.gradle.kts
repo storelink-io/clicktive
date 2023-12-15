@@ -6,6 +6,9 @@ plugins {
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.spring") version "1.9.20"
     kotlin("plugin.jpa") version "1.9.20"
+
+    kotlin("plugin.noarg") version "1.9.20"
+    kotlin("plugin.allopen") version "1.9.20"
 }
 
 configurations {
@@ -50,13 +53,17 @@ subprojects {
     dependencies {
         implementation(kotlin("stdlib"))
         implementation("org.springframework.boot:spring-boot-starter")
+        implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1")
         implementation("mysql:mysql-connector-java:8.0.32")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
-        implementation("org.springframework.boot:spring-boot-starter-webflux")
-        implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+        //implementation("org.springframework.boot:spring-boot-starter-webflux")
+        //implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
+
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 }
