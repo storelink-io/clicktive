@@ -53,14 +53,13 @@ subprojects {
     dependencies {
         implementation(kotlin("stdlib"))
         implementation("org.springframework.boot:spring-boot-starter")
+        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1")
         implementation("mysql:mysql-connector-java:8.0.32")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
-        //implementation("org.springframework.boot:spring-boot-starter-webflux")
-        //implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
 
         developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -68,7 +67,7 @@ subprojects {
     }
 }
 
-project(":ctv") {
+project(":api") {
     dependencies {
         implementation(project(":core"))
     }

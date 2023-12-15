@@ -1,3 +1,3 @@
 rootProject.name = "Clicktive"
-include("ctv")
+include("api")
 include("core")

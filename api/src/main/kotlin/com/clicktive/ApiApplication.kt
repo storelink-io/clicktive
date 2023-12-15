@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
     basePackages = ["com.clicktive.domains.api.repository"],
     entityManagerFactoryRef = "jpaEntityManagerFactory"
 )
-class CtvApplication
+class ApiApplication
 
 fun main(args: Array<String>) {
-    runApplication<CtvApplication>(*args)
+    runApplication<ApiApplication>(*args)
 }
