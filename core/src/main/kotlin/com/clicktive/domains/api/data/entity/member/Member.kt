@@ -11,6 +11,7 @@ import java.time.LocalDateTime
 @NoArg
 class Member (
     @Id
+    @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("회원 번호")
     var memberNo: Long?,
