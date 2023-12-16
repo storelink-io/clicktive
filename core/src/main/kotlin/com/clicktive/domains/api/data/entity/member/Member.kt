@@ -25,9 +25,6 @@ class Member (
     @Comment("회사 번호")
     var companyNo: Long,
 
-    @Comment("가입 일자")
-    var registerDate: String,
-
     @Comment("회원 유형 코드")
     var memberTypeCd: String,
 
@@ -44,6 +41,9 @@ class Member (
     var mobile: String?,
 
 ) : BaseEntity() {
+    @Comment("가입 일자")
+    var registerDate: String? = null
+
     @Comment("세금계산서 수신 이메일")
     var taxEmail: String? = null
 

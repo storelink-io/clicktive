@@ -53,14 +53,28 @@ subprojects {
     dependencies {
         implementation(kotlin("stdlib"))
         implementation("org.springframework.boot:spring-boot-starter")
+        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1")
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1")
         implementation("mysql:mysql-connector-java:8.0.32")
+        implementation("org.springframework.boot:spring-boot-starter-security")
+
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
-        implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+        implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
+        implementation("io.projectreactor:reactor-core:3.6.1")
+
+        //implementation("io.jsonwebtoken:jjwt:0.9.1")
+        implementation("io.jsonwebtoken:jjwt-api:0.12.3")
+        runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")
+        runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.3")
+
+        implementation("org.modelmapper:modelmapper:3.1.1")
 
         developmentOnly("org.springframework.boot:spring-boot-devtools")
         testImplementation("org.springframework.boot:spring-boot-starter-test")

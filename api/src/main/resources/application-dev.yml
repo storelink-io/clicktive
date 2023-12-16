@@ -1,0 +1,38 @@
+service:
+  name: clicktive
+
+spring:
+  datasource:
+    ctv:
+      url: jdbc:mysql://db-ctv-dev-instance-1.crulenhdppvw.ap-northeast-2.rds.amazonaws.com:3306/ctv?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+      username: appusr
+      password: zmfxl1214!!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        connection-test-query: SELECT 1
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        format_sql: true
+  jwt:
+    secret: BEBEA51C1F592CB28B9373662D33F
+
+logging.level.org.hibernate.type.descriptor.sql: TRACE
+logging.level.org.springframework.data.r2dbc: DEBUG
+
+springdoc:
+  swagger-ui:
+    doc-expansion: none
+
+logging:
+  level:
+    com.clicktive: debug
