@@ -105,10 +105,6 @@ class JwtTokenProvider(
         var ret = true
         try {
             val accessToken = token.split("Bearer ")[1]
-//            val params = MapSqlParameterSource()
-//            params.addValue("token", accessToken)
-//            params.addValue("refreshToken", refreshToken)
-//            val memberToken = memberTokenDao.getRefreshToken(params)!!
             val memberToken = memberTokenRepository.getByTokenAndRefreshToken(accessToken, refreshToken)!!
             ret = memberToken.refreshTokenDueDt!!.after(Date()) // 리플레시 유효기간 > 현재 이면 true(유효) 아니면 false(말료)
         } catch (e: Exception) {

@@ -6,25 +6,23 @@ import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
 @Entity
-@Table(name = "ctv_mb_country")
+@Table(name = "ctv_mb_brand")
 @NoArg
-class Country (
+class Brand (
     @Id
     @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Comment("국가 번호")
-    var countryNo: Long?,
+    @Comment("브랜드 번호")
+    var brandNo: Long?,
 
-    @Comment("국가 명")
-    var countryName: String?,
+    @Comment("회사 번호")
+    var companyNo: Long,
 
-    @Comment("통화 명")
-    var currencyName: String?,
+    @Comment("브랜드 명")
+    var brandName: String?,
 
-    @Comment("통화")
-    var currency: String?,
+    @Comment("브랜드 상태 코드")
+    var brandStateCd: String?,
 
-    @Comment("국가 상태 코드")
-    var countryStateCd: String?,
 ) : BaseEntity() {
 }
