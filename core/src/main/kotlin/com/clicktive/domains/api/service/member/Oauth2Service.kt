@@ -17,7 +17,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 @Service
-class Oauth2Service (
+class Oauth2Service(
     val memberTokenRepository: MemberTokenRepository,
     val memberBasicRepository: MemberRepository,
     val jwtTokenProvider: JwtTokenProvider
@@ -71,7 +71,8 @@ class Oauth2Service (
 
         // 회원 토큰 정보 조회 : 리플레시 토큰
         val tempToken = token.substring("Bearer ".length)
-        val memberToken = memberTokenRepository.getByTokenAndRefreshToken(tempToken, refreshToken) ?: throw ServiceException("AUTH-001")
+        val memberToken = memberTokenRepository.getByTokenAndRefreshToken(tempToken, refreshToken)
+            ?: throw ServiceException("AUTH-001")
         val unvalidated = memberToken.refreshTokenDueDt!!.before(Date()) //true이면 유효기간이 말료됨
         if (unvalidated) {
             throw ServiceException("AUTH-001")

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MemberTokenRepository: JpaRepository<MemberToken, String> {
+interface MemberTokenRepository : JpaRepository<MemberToken, String> {
     fun getByTokenAndRefreshToken(token: String, refreshToken: String): MemberToken?
 
     fun getByToken(token: String): MemberToken

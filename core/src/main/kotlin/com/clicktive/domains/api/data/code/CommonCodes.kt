@@ -1,4 +1,4 @@
-package kr.placeup.domains.pluapi.data.code
+package com.clicktive.domains.api.data.code
 
 fun getCode(masterCode: String, detailCode: String?): String? {
     var value: String? = null

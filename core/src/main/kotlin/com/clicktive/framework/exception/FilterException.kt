@@ -56,9 +56,9 @@ class FilterException : OncePerRequestFilter() {
                 message = getMessage("ERR-001")
             )
 
-            apiResponse.detailMessage             = ex.message
-            httpServletResponse.status            = HttpStatus.INTERNAL_SERVER_ERROR.value()
-            httpServletResponse.contentType       = "application/json;charset=UTF-8"
+            apiResponse.detailMessage = ex.message
+            httpServletResponse.status = HttpStatus.INTERNAL_SERVER_ERROR.value()
+            httpServletResponse.contentType = "application/json;charset=UTF-8"
             httpServletResponse.characterEncoding = "UTF-8"
 
             if (ex.message?.contains("authUser") == true) {

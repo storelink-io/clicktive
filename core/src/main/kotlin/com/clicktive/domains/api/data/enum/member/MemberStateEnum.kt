@@ -3,7 +3,6 @@ package com.clicktive.domains.api.data.enum.member
 import jakarta.persistence.AttributeConverter
 import jakarta.persistence.Converter
 
-
 //회원 상태 코드
 enum class MemberStateEnum(val code: String) {
     정상("100"),
@@ -26,6 +25,7 @@ class MemberStateEnumConverter : AttributeConverter<MemberStateEnum, String> {
         if (attribute == null) return null
         return attribute.code
     }
+
     override fun convertToEntityAttribute(code: String?): MemberStateEnum? {
         if (code == null) return null
         return MemberStateEnum.fromCode(code)

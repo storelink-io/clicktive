@@ -59,23 +59,17 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("mysql:mysql-connector-java:8.0.32")
         implementation("org.springframework.boot:spring-boot-starter-security")
-
+        implementation("io.github.microutils:kotlin-logging-jvm:2.1.20")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
         implementation("io.projectreactor:reactor-core:3.6.1")
-
-        //implementation("io.jsonwebtoken:jjwt:0.9.1")
         implementation("io.jsonwebtoken:jjwt-api:0.12.3")
         runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")
         runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.3")
-
         implementation("org.modelmapper:modelmapper:3.1.1")
-
         developmentOnly("org.springframework.boot:spring-boot-devtools")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }

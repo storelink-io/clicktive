@@ -1,8 +1,8 @@
 package com.clicktive.controller
 
-import com.clicktive.domains.api.data.dto.member.LoginMemberRequest
-import com.clicktive.domains.api.data.dto.member.MemberRegisterRequest
-import com.clicktive.domains.api.data.dto.member.MemberResponse
+import com.clicktive.domains.api.data.dto.member.LoginRequestDto
+import com.clicktive.domains.api.data.dto.member.MemberRegisterRequestDto
+import com.clicktive.domains.api.data.dto.member.MemberResponseDto
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.process.member.SignInProcess
 import com.clicktive.domains.api.repository.member.MemberRepository
@@ -29,15 +29,15 @@ class MemberController(
     private val signInProcess: SignInProcess,
     private val memberService: MemberService,
     private val memberRepository: MemberRepository
-): BaseController() {
+) : BaseController() {
     @PostMapping("/sign-in", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     @Operation(
         description = "회원 로그인"
     )
     fun loginMember(
-        @Valid @ModelAttribute req: LoginMemberRequest
-    ): ResponseEntity<ApiResponse<MemberResponse>> {
-        val memberResponse = signInProcess.doProcess(req.memberId, req.memberPw)
+        @Valid @ModelAttribute loginRequestDto: LoginRequestDto
+    ): ResponseEntity<ApiResponse<MemberResponseDto>> {
+        val memberResponse = signInProcess.doProcess(loginRequestDto.memberId, loginRequestDto.memberPw)
         return ResponseEntity
             .ok()
             .body(httpResponse(memberResponse))
@@ -48,9 +48,9 @@ class MemberController(
         description = "회원 가입"
     )
     fun createMember(
-        @Valid @ModelAttribute req: MemberRegisterRequest
+        @Valid @ModelAttribute memberRegisterRequestDto: MemberRegisterRequestDto
     ): ApiResponse<Nothing> {
-        memberService.createAndUpdateMember(req)
+        memberService.createAndUpdateMember(memberRegisterRequestDto)
         return httpResponse()
     }
 
@@ -60,10 +60,10 @@ class MemberController(
     )
     fun getMemberInfo(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
-    ): ApiResponse<MemberResponse> {
+    ): ApiResponse<MemberResponseDto> {
         val member = memberRepository.getByMemberNo(currentMember.memberNo) ?: throw ServiceException("MEM-001")
-        val memberResponse = Mapper.convert<MemberResponse>(member)
-        val excludeProperty = mutableListOf<String>("token","refreshToken","tokenDueDt","refreshTokenDueDt")
+        val memberResponse = Mapper.convert<MemberResponseDto>(member)
+        val excludeProperty = mutableListOf("token", "refreshToken", "tokenDueDt", "refreshTokenDueDt")
         return httpResponse(memberResponse, excludeProperty)
     }
 }

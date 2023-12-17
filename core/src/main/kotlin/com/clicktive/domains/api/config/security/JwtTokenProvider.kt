@@ -38,13 +38,13 @@ class JwtTokenProvider(
     }
 
     fun authenticate(token: String): Authentication {
-        val memberToken    = memberTokenRepository.getValidToken(token) ?: throw ServiceException("AUTH-001")
+        val memberToken = memberTokenRepository.getValidToken(token) ?: throw ServiceException("AUTH-001")
         val accountAdapter = authenticationService.loadUserByUsername(getId(token))
         return UsernamePasswordAuthenticationToken(accountAdapter, "", accountAdapter.authorities)
     }
 
     fun createAccessToken(member: Member, roles: List<String>): JwtToken {
-        val key : Key = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
+        val key: Key = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
         val now = Date()
         val expiredDt = Date(now.time + accessTokenValidMillisecond)
         val token = Jwts.builder()

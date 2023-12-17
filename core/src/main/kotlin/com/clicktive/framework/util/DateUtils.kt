@@ -7,7 +7,6 @@ import java.time.temporal.ChronoUnit
 
 class DateUtils {
     companion object {
-
         fun convertDt2String(sourceDt: LocalDateTime, format: String = "yyyy-MM-dd HH:mm:ss"): String {
             var formatter = DateTimeFormatter.ISO_DATE
             return sourceDt.format(DateTimeFormatter.ofPattern(format))

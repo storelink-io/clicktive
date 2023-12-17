@@ -14,7 +14,7 @@ class ReadExcel {
 
         var result = ""
 
-        for(row in sheet) {
+        for (row in sheet) {
             result += row.getCell(1).toString()
         }
 

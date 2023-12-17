@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MemberRepository: JpaRepository<Member, Long> {
+interface MemberRepository : JpaRepository<Member, Long> {
     @Query("select main from Member main where main.memberNo = :memberNo and main.memberStateCd in ('100') ")
     fun getByMemberNo(memberNo: Long?): Member?
 

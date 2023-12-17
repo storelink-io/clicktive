@@ -12,7 +12,7 @@ object TypeCheckUtils {
      * @return      Boolean
      */
     fun Any?.isEmpty(): Boolean {
-        val valueType = if(this == null) null else this::class.java
+        val valueType = if (this == null) null else this::class.java
         return (valueType == emptyList<Any>()::class.java || valueType == emptyArray<Any>()::class.java)
     }
 
@@ -25,7 +25,7 @@ object TypeCheckUtils {
      * @return      Boolean
      */
     fun Any?.isBasic(): Boolean {
-        val valueType = if(this == null) null else this::class.java
+        val valueType = if (this == null) null else this::class.java
         return (valueType == Short::class.java || valueType == Int::class.java || valueType == Integer::class.java || valueType == Long::class.java
                 || valueType == Float::class.java || valueType == Double::class.java || valueType == Number::class.java
                 || valueType == Char::class.java || valueType == String::class.java
@@ -41,8 +41,8 @@ object TypeCheckUtils {
      * @return      Boolean
      */
     fun Any?.isVoid(): Boolean {
-        val valueType = if(this == null) null else this::class.java
-        return (valueType ==Void::class.java)
+        val valueType = if (this == null) null else this::class.java
+        return (valueType == Void::class.java)
     }
 
     /**
@@ -54,7 +54,7 @@ object TypeCheckUtils {
      * @return      Boolean
      */
     fun Any?.isList(): Boolean {
-        val valueType = if(this == null) null else this::class.java
+        val valueType = if (this == null) null else this::class.java
         return (valueType == List::class.java || valueType == ArrayList::class.java || valueType == LinkedList::class.java
                 || valueType == Collections.singletonList("").javaClass)
     }
@@ -68,7 +68,7 @@ object TypeCheckUtils {
      * @return      Boolean
      */
     fun Any?.isMap(): Boolean {
-        val valueType = if(this == null) null else this::class.java
+        val valueType = if (this == null) null else this::class.java
         return (valueType == Map::class.java || valueType == HashMap::class.java || valueType == LinkedHashMap::class.java)
     }
 }

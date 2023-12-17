@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service
 class AuthenticationService(
     private val userRepository: MemberRepository
 ) : UserDetailsService {
-    override fun loadUserByUsername (username: String): UserDetailsAdapter {
-        return UserDetailsAdapter (
+    override fun loadUserByUsername(username: String): UserDetailsAdapter {
+        return UserDetailsAdapter(
             userRepository.findById(username.toLong()).get() ?: throw ServiceException("USER-001")
         )
     }

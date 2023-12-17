@@ -41,7 +41,7 @@ class CommonUtils {
         fun convertCardNumber(cardNumber: String): String {
             var loopIndex = 0
             val newCardNumber: ArrayList<String> = arrayListOf()
-            for (x in cardNumber){
+            for (x in cardNumber) {
                 if (loopIndex in 4..11) {
                     newCardNumber.add("X")
                 } else {

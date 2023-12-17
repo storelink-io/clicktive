@@ -48,7 +48,7 @@ class JpaConfig {
             .build()
     }
 
-//    @Bean
+    //    @Bean
 //    fun jpaTransactionManager(
 //        jpaEntityManagerFactory: LocalContainerEntityManagerFactoryBean
 //    ): PlatformTransactionManager {

@@ -4,6 +4,7 @@ import com.clicktive.domains.api.data.entity.member.BrandMember
 import com.clicktive.domains.api.data.entity.member.BrandMemberPk
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
+
 @Repository
-interface BrandMemberRepository: JpaRepository<BrandMember, BrandMemberPk> {
+interface BrandMemberRepository : JpaRepository<BrandMember, BrandMemberPk> {
 }
