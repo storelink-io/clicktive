@@ -13,15 +13,15 @@ import java.time.LocalDateTime
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 @NoArg
-class BaseEntity: BaseCreateEntity() {
+class BaseEntity : BaseCreateEntity() {
     @LastModifiedDate
     @Comment("수정 일시")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    var modifyDt: LocalDateTime? = null //var modifyDt: LocalDateTime = LocalDateTime.now()
+    var modifyDt: LocalDateTime? = null
 
     @LastModifiedBy
     @Comment("수정자")
-    var modifyMemberNo : Long? = null
+    var modifyMemberNo: Long? = null
 }
 
 

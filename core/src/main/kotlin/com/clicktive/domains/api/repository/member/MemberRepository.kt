@@ -11,5 +11,4 @@ interface MemberRepository : JpaRepository<Member, Long> {
     fun getByMemberNo(memberNo: Long?): Member?
 
     fun getByMemberId(memberId: String): Member?
-    fun findByMobile(mobile: String): List<Member>
 }

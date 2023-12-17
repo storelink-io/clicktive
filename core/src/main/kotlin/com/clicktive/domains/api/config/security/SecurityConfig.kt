@@ -30,6 +30,8 @@ class SecurityConfig(
         .cors(Customizer.withDefaults())
         .authorizeHttpRequests {
             it
+                .requestMatchers("/health").permitAll()
+                .requestMatchers("/ctv/v1/ad/**").permitAll()
                 .requestMatchers("/ctv/v1/members/sign-up").permitAll()
                 .requestMatchers("/ctv/v1/members/sign-in").permitAll()
                 .anyRequest().authenticated()

@@ -1,15 +1,14 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
-
 @Entity
 @Table(name = "ctv_ad_raw_sales")
 @NoArg
-class RawSales (
+class RawSales(
     @Id
     @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -152,7 +151,5 @@ class RawSales (
     var productSendQty: Int,
 
     @Comment("발송된 주문")
-    var sendedOrderQty: Int,
-
-) : BaseEntity() {
-}
+    var sendedOrderQty: Int
+) : BaseCreateEntity()

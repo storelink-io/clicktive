@@ -10,16 +10,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class SwaggerConfig {
-//    @Bean
-//    fun openAPI(): OpenAPI {
-//        return OpenAPI()
-//            .info(
-//                Info().title("CLICKTIVE 광고 성과 시스템 API")
-//                    .description("클릭티브 광고 성과 시스템 API")
-//                    .version("v0.0.1")
-//            )
-//    }
-
     @Bean
     fun openAPI(): OpenAPI {
         return OpenAPI()

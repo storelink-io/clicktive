@@ -34,7 +34,6 @@ class FilterException : OncePerRequestFilter() {
             } else if (e.messageCode.contains("ERR")) {
                 apiResponse.status = HttpStatus.INTERNAL_SERVER_ERROR.value()
                 httpServletResponse.status = HttpStatus.OK.value()
-//                httpServletResponse.status = HttpStatus.INTERNAL_SERVER_ERROR.value()
             }
 
             httpServletResponse.contentType = "application/json;charset=UTF-8"

@@ -2,24 +2,19 @@ package com.clicktive.domains.api.config.security
 
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.repository.member.MemberTokenRepository
-import com.clicktive.domains.api.service.AuthenticationService
+import com.clicktive.domains.api.service.auth.AuthenticationService
 import com.clicktive.framework.exception.ServiceException
-import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import jakarta.annotation.PostConstruct
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 import java.security.Key
 import java.util.*
-import javax.crypto.spec.SecretKeySpec
-
 
 @Component
 class JwtTokenProvider(
@@ -64,7 +59,6 @@ class JwtTokenProvider(
     }
 
     fun createRefreshToken(id: Long): JwtToken {
-        //val key = Jwts.SIG.HS256.key().build()
         val key = Keys.hmacShaKeyFor(jwtSecret.toByteArray())
         val now = Date()
         val expiredDt = Date(now.time + refreshTokenValidMillisecond)
@@ -106,7 +100,7 @@ class JwtTokenProvider(
         try {
             val accessToken = token.split("Bearer ")[1]
             val memberToken = memberTokenRepository.getByTokenAndRefreshToken(accessToken, refreshToken)!!
-            ret = memberToken.refreshTokenDueDt!!.after(Date()) // 리플레시 유효기간 > 현재 이면 true(유효) 아니면 false(말료)
+            ret = memberToken.refreshTokenDueDt!!.after(Date())
         } catch (e: Exception) {
             e.printStackTrace()
             ret = false

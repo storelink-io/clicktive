@@ -16,13 +16,11 @@ import java.time.LocalDateTime
 abstract class BaseCreateEntity {
     @CreatedDate
     @Comment("생성 일시")
-//    @Column(name =  "createDt")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     var createDt: LocalDateTime = LocalDateTime.now()
 
     @CreatedBy
     @Comment("생성자")
-//    @Column(name =  "createMemberNo")
     var createMemberNo : Long? = null
 }
 

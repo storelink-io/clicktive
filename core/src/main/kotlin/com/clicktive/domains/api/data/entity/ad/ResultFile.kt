@@ -8,7 +8,7 @@ import org.hibernate.annotations.Comment
 @Entity
 @Table(name = "ctv_ad_result_file")
 @NoArg
-class ResultFile (
+class ResultFile(
     @Id
     @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,5 @@ class ResultFile (
     var rowNum: Int,
 
     @Comment("등록 여부")
-    var registerYn: String?,
-
-) : BaseEntity() {
-}
+    var registerYn: String?
+) : BaseEntity()

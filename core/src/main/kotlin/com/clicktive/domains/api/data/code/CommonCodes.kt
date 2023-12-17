@@ -1,10 +1,10 @@
 package com.clicktive.domains.api.data.code
 
-fun getCode(masterCode: String, detailCode: String?): String? {
+fun getCode(mainCode: String, detailCode: String?): String? {
     var value: String? = null
 
     if (detailCode != null) {
-        when (masterCode) {
+        when (mainCode) {
             "brandStateCd" -> {
                 value = brandStateCd[detailCode]
             }

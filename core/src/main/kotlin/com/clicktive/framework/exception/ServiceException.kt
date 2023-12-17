@@ -4,7 +4,6 @@ import com.clicktive.framework.api.getMessage
 import java.lang.RuntimeException
 
 open class ServiceException : RuntimeException {
-
     var messageCode: String
     final override lateinit var message: String
 
