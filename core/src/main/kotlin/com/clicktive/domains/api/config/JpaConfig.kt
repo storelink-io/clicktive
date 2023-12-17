@@ -16,7 +16,6 @@ import javax.sql.DataSource
 @Configuration
 @EnableTransactionManagement
 class JpaConfig {
-
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.ctv")
     fun dataSourceProperties(): DataSourceProperties {
@@ -48,21 +47,12 @@ class JpaConfig {
             .build()
     }
 
-    //    @Bean
-//    fun jpaTransactionManager(
-//        jpaEntityManagerFactory: LocalContainerEntityManagerFactoryBean
-//    ): PlatformTransactionManager {
-//        val transactionManager = JpaTransactionManager()
-//        transactionManager.entityManagerFactory = jpaEntityManagerFactory.getObject()
-//        return transactionManager
-//    }
     @Primary
     @Bean
     fun jpaTransactionManager(
         hikariDataSource: DataSource,
         jpaEntityManagerFactory: LocalContainerEntityManagerFactoryBean
     ): PlatformTransactionManager {
-//            val dataSourceTransactionManager = DataSourceTransactionManager(hikariDataSource)
         val jpaTransactionManager = JpaTransactionManager(jpaEntityManagerFactory.`object`!!)
         return jpaTransactionManager
     }
