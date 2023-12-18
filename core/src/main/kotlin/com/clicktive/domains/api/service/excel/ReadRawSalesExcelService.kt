@@ -3,9 +3,10 @@ package com.clicktive.domains.api.service.excel
 import com.clicktive.domains.api.constant.code.ResultFileTypeCd
 import com.clicktive.domains.api.data.entity.ad.RawSales
 import com.clicktive.domains.api.constant.excel.CellDataConstants
-import com.clicktive.domains.api.data.dto.excel.ReadExcelRequestDto
+import com.clicktive.domains.api.data.dto.excel.ReadExcelRequest
 import com.clicktive.domains.api.service.ad.ResultFileService
 import com.clicktive.domains.api.service.ad.SalesService
+import com.clicktive.framework.exception.ServiceException
 import com.clicktive.framework.util.Mapper
 import com.clicktive.framework.util.excel.ConvertExcelValue.toFloat
 import com.clicktive.framework.util.excel.ConvertExcelValue.toInt
@@ -15,6 +16,7 @@ import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
+import java.io.FileInputStream
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -26,7 +28,7 @@ class ReadRawSalesExcelService(
 ) {
     fun readRawSales(
         file: MultipartFile,
-        readExcelRequestDto: ReadExcelRequestDto
+        readExcelRequest: ReadExcelRequest
     ): Int {
         val workbook: Workbook = XSSFWorkbook(file.inputStream)
         val sheet = workbook.getSheetAt(0)
@@ -39,9 +41,9 @@ class ReadRawSalesExcelService(
 
             RawSales(
                 rawSalesNo = null,
-                brandNo = readExcelRequestDto.brandNo,
-                countryNo = readExcelRequestDto.countryNo,
-                month = readExcelRequestDto.month,
+                brandNo = readExcelRequest.brandNo,
+                countryNo = readExcelRequest.countryNo,
+                month = readExcelRequest.month,
                 purchaseDate = purchaseDate,
                 salesAmt = data?.get("salesAmt").toInt(),
                 salesB2bAmt = data?.get("salesB2bAmt").toInt(),
@@ -92,9 +94,9 @@ class ReadRawSalesExcelService(
         val rowNum = entity.size
 
         resultFileService.createResultFile(
-            brandNo = readExcelRequestDto.brandNo,
-            countryNo = readExcelRequestDto.countryNo,
-            month = readExcelRequestDto.month,
+            brandNo = readExcelRequest.brandNo,
+            countryNo = readExcelRequest.countryNo,
+            month = readExcelRequest.month,
             resultFileTypeCd = ResultFileTypeCd.RAW_SALES.detailCode,
             rowNum = rowNum
         )

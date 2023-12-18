@@ -7,7 +7,7 @@ import com.clicktive.domains.api.data.dto.member.TokenResponse
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.data.enum.member.MemberStateEnum
 import com.clicktive.domains.api.repository.member.MemberRepository
-import com.clicktive.domains.api.data.dto.member.MemberResponseDto
+import com.clicktive.domains.api.data.dto.member.MemberResponse
 import com.clicktive.domains.api.service.member.Oauth2Service
 import com.clicktive.framework.exception.ServiceException
 import com.clicktive.framework.util.Mapper
@@ -27,7 +27,7 @@ class SignInProcess() {
     fun doProcess(
         memberId: String,
         memberPw: String,
-    ): MemberResponseDto {
+    ): MemberResponse {
         var loginMember: Member? = null
         var loginToken: TokenResponse? = null
 
@@ -71,7 +71,7 @@ class SignInProcess() {
             }
         }
 
-        val memberResponse: MemberResponseDto = Mapper.convert(loginMember!!)
+        val memberResponse: MemberResponse = Mapper.convert(loginMember!!)
         memberResponse.accessToken = loginToken!!.accessToken
         memberResponse.refreshToken = loginToken!!.refreshToken
         memberResponse.tokenDueDt = loginToken!!.tokenDueDt

@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.service.member
 
-import com.clicktive.domains.api.data.dto.member.MemberRegisterRequestDto
+import com.clicktive.domains.api.data.dto.member.MemberRegisterRequest
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.repository.member.MemberRepository
 import com.clicktive.framework.exception.ServiceException
@@ -18,7 +18,7 @@ class MemberService(
     private val memberRepository: MemberRepository,
 ) {
     @Transactional
-    fun createAndUpdateMember(request: MemberRegisterRequestDto) {
+    fun createAndUpdateMember(request: MemberRegisterRequest) {
         if (CommonUtils.isNull(request.memberName)) {
             throw ServiceException("COMM-004", messageParams = arrayOf("회원 이름"))
         }

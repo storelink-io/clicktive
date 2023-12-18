@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.service.common
 
-import com.clicktive.domains.api.data.dto.common.CodeDetailDto
+import com.clicktive.domains.api.data.dto.common.CodeDetailResponse
 import com.clicktive.domains.api.repository.common.CodeDetailRepository
 import jakarta.annotation.PostConstruct
 import kotlinx.coroutines.runBlocking
@@ -23,7 +23,7 @@ class CodeMappingService(
             codes =
                 runBlocking {
                     codeDetailRepository.findAll().toList().map {
-                        CodeDetailDto(
+                        CodeDetailResponse(
                             mainCode = it.mainCode,
                             detailCode = it.detailCode,
                             detailCodeName = it.detailCodeName,
@@ -44,19 +44,19 @@ class CodeMappingService(
     }
 
     companion object {
-        private var codes: List<CodeDetailDto> = listOf()
-        private var codeMap: HashMap<Pair<String, String>, CodeDetailDto> = hashMapOf()
+        private var codes: List<CodeDetailResponse> = listOf()
+        private var codeMap: HashMap<Pair<String, String>, CodeDetailResponse> = hashMapOf()
 
         @Suppress("unused")
-        fun getAllCodes(): List<CodeDetailDto> {
+        fun getAllCodes(): List<CodeDetailResponse> {
             return codes
         }
 
-        fun findAllByMainCode(mainCode: String): List<CodeDetailDto> {
+        fun findAllByMainCode(mainCode: String): List<CodeDetailResponse> {
             return codes.filter { it.mainCode == mainCode }
         }
 
-        fun findByMainCodeAndDetailCode(mainCode: String, detailCode: String): CodeDetailDto? {
+        fun findByMainCodeAndDetailCode(mainCode: String, detailCode: String): CodeDetailResponse? {
             return codeMap[Pair(mainCode, detailCode)]
         }
     }

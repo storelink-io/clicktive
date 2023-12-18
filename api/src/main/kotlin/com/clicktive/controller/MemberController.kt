@@ -1,8 +1,8 @@
 package com.clicktive.controller
 
-import com.clicktive.domains.api.data.dto.member.LoginRequestDto
-import com.clicktive.domains.api.data.dto.member.MemberRegisterRequestDto
-import com.clicktive.domains.api.data.dto.member.MemberResponseDto
+import com.clicktive.domains.api.data.dto.member.LoginRequest
+import com.clicktive.domains.api.data.dto.member.MemberRegisterRequest
+import com.clicktive.domains.api.data.dto.member.MemberResponse
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.process.member.SignInProcess
 import com.clicktive.domains.api.repository.member.MemberRepository
@@ -35,9 +35,9 @@ class MemberController(
         description = "회원 로그인"
     )
     fun loginMember(
-        @Valid @ModelAttribute loginRequestDto: LoginRequestDto
-    ): ResponseEntity<ApiResponse<MemberResponseDto>> {
-        val memberResponse = signInProcess.doProcess(loginRequestDto.memberId, loginRequestDto.memberPw)
+        @Valid @ModelAttribute loginRequest: LoginRequest
+    ): ResponseEntity<ApiResponse<MemberResponse>> {
+        val memberResponse = signInProcess.doProcess(loginRequest.memberId, loginRequest.memberPw)
         return ResponseEntity
             .ok()
             .body(httpResponse(memberResponse))
@@ -48,9 +48,9 @@ class MemberController(
         description = "회원 가입"
     )
     fun createMember(
-        @Valid @ModelAttribute memberRegisterRequestDto: MemberRegisterRequestDto
+        @Valid @ModelAttribute memberRegisterRequest: MemberRegisterRequest
     ): ApiResponse<Nothing> {
-        memberService.createAndUpdateMember(memberRegisterRequestDto)
+        memberService.createAndUpdateMember(memberRegisterRequest)
         return httpResponse()
     }
 
@@ -60,9 +60,9 @@ class MemberController(
     )
     fun getMemberInfo(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
-    ): ApiResponse<MemberResponseDto> {
+    ): ApiResponse<MemberResponse> {
         val member = memberRepository.getByMemberNo(currentMember.memberNo) ?: throw ServiceException("MEM-001")
-        val memberResponse = Mapper.convert<MemberResponseDto>(member)
+        val memberResponse = Mapper.convert<MemberResponse>(member)
         val excludeProperty = mutableListOf("token", "refreshToken", "tokenDueDt", "refreshTokenDueDt")
         return httpResponse(memberResponse, excludeProperty)
     }

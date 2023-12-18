@@ -2,7 +2,7 @@ package com.clicktive.domains.api.data.dto.excel
 
 import io.swagger.v3.oas.annotations.media.Schema
 
-data class ReadExcelRequestDto(
+data class ReadExcelRequest(
     @Schema(description = "브랜드 번호", required = true)
     val brandNo: Long,
     @Schema(description = "국가 번호", required = true)

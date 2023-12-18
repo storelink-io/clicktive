@@ -2,7 +2,7 @@ package com.clicktive.domains.api.data.dto.common
 
 import io.swagger.v3.oas.annotations.media.Schema
 
-data class CodeDetailDto(
+data class CodeDetailResponse(
     @Schema(description = "메인 코드", required = true, example = "")
     val mainCode: String,
     @Schema(description = "상세 코드", required = true, example = "")

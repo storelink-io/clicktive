@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 class SalesService(
     private val rawSalesRepository: RawSalesRepository
 ) {
-    fun createRawSales(rawSales: List<RawSales>) {
-        rawSalesRepository.saveAll(rawSales)
+    fun createRawSales(rawSales: List<RawSales>): List<RawSales> {
+        return rawSalesRepository.saveAll(rawSales)
     }
 }

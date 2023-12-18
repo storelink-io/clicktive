@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Email
 
 @NoArg
 @DescriptionFromEntity(Member::class)
-data class MemberRegisterRequestDto (
+data class MemberRegisterRequest (
     val memberNo: Long?,
     val memberTypeCd: MemberTypeEnum,
     val memberStateCd: MemberStateEnum,

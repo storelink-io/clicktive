@@ -10,7 +10,7 @@ import java.util.Date
 
 @NoArg
 @DescriptionFromEntity(Member::class)
-data class MemberResponseDto (
+data class MemberResponse (
     val memberNo: Long?,
     val memberId: String?,
     val memberName: String?,

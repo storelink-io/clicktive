@@ -1,6 +1,6 @@
 package com.clicktive.controller
 
-import com.clicktive.domains.api.data.dto.excel.ReadExcelRequestDto
+import com.clicktive.domains.api.data.dto.excel.ReadExcelRequest
 import com.clicktive.domains.api.service.excel.ReadRawSalesExcelService
 import com.clicktive.framework.api.ApiResponse
 import com.clicktive.framework.springframework.base.BaseController
@@ -23,11 +23,11 @@ class AdRowController(
     @PostMapping("/sales")
     fun sales(
         @RequestParam file: MultipartFile,
-        @Valid @RequestBody readExcelRequestDto: ReadExcelRequestDto
+        @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val result = readRawSalesExcelService.readRawSales(
             file = file,
-            readExcelRequestDto = readExcelRequestDto
+            readExcelRequest = readExcelRequest
         )
         return ResponseEntity
             .ok()
