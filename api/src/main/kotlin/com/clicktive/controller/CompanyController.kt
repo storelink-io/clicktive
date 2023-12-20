@@ -31,7 +31,7 @@ class CompanyController(
         @ModelAttribute req: SearchCompanyRequest,
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CompanyResponse>> {
-        val companies = companyDao.getAllCompanies(req.companyName, req.companyStateCd)
+        val companies = companyDao.findAllCompanies(req.companyName, req.companyStateCd)
         val tempResponse: MutableList<CompanyResponse> = Mapper.convert(companies)
         return httpResponse(tempResponse)
     }
@@ -65,10 +65,10 @@ class CompanyController(
     @Operation(
         summary = "전체 회사 정보 리스트"
     )
-    fun getCompanies(
+    fun getAllCompanies(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CompanyResponse>> {
-        val companies = companyRepository.getByCompanyStateCd()
+        val companies = companyRepository.findAllByCompanyStateCd()
         val tempResponse: MutableList<CompanyResponse> = Mapper.convert(companies)
         return httpResponse(tempResponse)
     }

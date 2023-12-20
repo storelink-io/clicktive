@@ -37,4 +37,16 @@ class BrandDao(
             rowMapper
         )
     }
+
+    fun findMemberBrands(memberNo: Long): MutableList<Brand> {
+        val params = MapSqlParameterSource("memberNo", memberNo)
+
+        val queryBuilder = queryBuilder("findMemberBrands")
+
+        return jdbcTemplate.query(
+            queryBuilder.toString(),
+            params,
+            rowMapper
+        )
+    }
 }

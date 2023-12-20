@@ -7,5 +7,15 @@
             "FROM ctv_mb_brand ",
             "WHERE 1=1 "
         ]
+    },
+    {
+        "id": "findMemberBrands",
+        "description": "회원별 브랜드 정보를 조회함",
+        "query": [
+            "select b.* ",
+            "from ctv_mb_brand_member m ",
+            "     inner join ctv_mb_brand b on m.brandNo = b.brandNo and b.brandStateCd = '100' ",
+            "where m.memberNo = :memberNo "
+        ]
     }
 ]

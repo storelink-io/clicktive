@@ -1,0 +1,12 @@
+[
+    {
+        "id": "findBrandCountries",
+        "description": "브랜드별 국가 리스트",
+        "query": [
+            "select c.* ",
+            "from ctv_mb_brand_country m ",
+            "     inner join ctv_mb_country c on m.countryNo = c.countryNo and c.countryStateCd = '100' ",
+            "where m.brandNo = :brandNo "
+        ]
+    }
+]

@@ -16,10 +16,10 @@ class CompanyDao(
 
     private val rowMapper: RowMapper<Company> = BeanPropertyRowMapper.newInstance(Company::class.java)
 
-    fun getAllCompanies(companyName: String?, companyStateCd: String?): MutableList<Company> {
+    fun findAllCompanies(companyName: String?, companyStateCd: String?): MutableList<Company> {
         val params = MapSqlParameterSource()
 
-        val queryBuilder = queryBuilder("getAllCompanies")
+        val queryBuilder = queryBuilder("findAllCompanies")
 
         if (CommonUtils.isNotNull(companyName)) {
             params.addValue("companyName", companyName)

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CompanyRepository : JpaRepository<Company, Long> {
     @Query("select m from Company m where m.companyStateCd = :companyStateCd ")
-    fun getByCompanyStateCd(companyStateCd: String = "100"): MutableList<Company>
+    fun findAllByCompanyStateCd(companyStateCd: String = "100"): MutableList<Company>
 }

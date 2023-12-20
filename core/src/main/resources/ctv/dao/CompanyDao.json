@@ -1,6 +1,6 @@
 [
     {
-        "id": "getAllCompanies",
+        "id": "findAllCompanies",
         "description": "회사 정보를 조회함",
         "query": [
             "SELECT * ",

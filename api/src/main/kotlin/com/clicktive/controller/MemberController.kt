@@ -1,5 +1,6 @@
 package com.clicktive.controller
 
+import com.clicktive.domains.api.data.dto.country.CountryResponse
 import com.clicktive.domains.api.data.dto.member.LoginRequest
 import com.clicktive.domains.api.data.dto.member.MemberRegisterRequest
 import com.clicktive.domains.api.data.dto.member.MemberResponse

@@ -6,6 +6,7 @@ import com.clicktive.domains.api.data.dto.brand.BrandResponse
 import com.clicktive.domains.api.data.dto.brand.SearchBrandRequest
 import com.clicktive.domains.api.data.dto.company.CompanyRequest
 import com.clicktive.domains.api.data.dto.company.CompanyResponse
+import com.clicktive.domains.api.data.dto.country.CountryResponse
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.repository.member.BrandRepository
 import com.clicktive.domains.api.service.brand.BrandService
@@ -27,9 +28,9 @@ class BrandController(
 ): BaseController() {
     @GetMapping("/brands")
     @Operation(
-        summary = "브랜드 정보 리스트"
+        summary = "브랜드 정보 검색"
     )
-    fun getBrands(
+    fun findAllBrands(
         @ModelAttribute req: SearchBrandRequest,
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<BrandResponse>> {
@@ -48,5 +49,18 @@ class BrandController(
     ): ApiResponse<Nothing> {
         brandService.saveBrand(req, currentMember.memberNo!!)
         return httpResponse()
+    }
+
+
+    @GetMapping("/member")
+    @Operation(
+        summary = "회원별 브랜드 정보 리스트"
+    )
+    fun getMemberBrands(
+        @Parameter(hidden = true) @CurrentMember currentMember: Member
+    ): ApiResponse<List<BrandResponse>> {
+        val brands = brandDao.findMemberBrands(currentMember.memberNo!!)
+        val tempResponse: MutableList<BrandResponse> = Mapper.convert(brands)
+        return httpResponse(tempResponse)
     }
 }
