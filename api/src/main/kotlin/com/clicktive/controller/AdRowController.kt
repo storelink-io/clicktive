@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile
 
 // TODO set createDt, createMemberNo
 @RestController
-@RequestMapping("/ctv/v1/ad/row")
+@RequestMapping("/ctv/v1/ad/raw")
 class AdRowController(
     private val readRawSalesExcelService: ReadRawSalesExcelService,
     private val readRawSalesProductExcelService: ReadRawSalesProductExcelService,
