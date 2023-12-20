@@ -11,7 +11,7 @@ class ReadExcel {
         cellData: List<CellData>
     ): List<CellData> {
         for (cell in cellData) {
-            cell.cellIndex = row.singleOrNull { it.stringCellValue in cell.cellName }?.columnIndex
+            cell.cellIndex = row.singleOrNull { it.stringCellValue.trim() in cell.cellName }?.columnIndex
         }
 
         return cellData

@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -22,7 +22,7 @@ class RawSalesProduct (
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("ASIN")
     var asin: String?,
@@ -134,6 +134,4 @@ class RawSalesProduct (
 
     @Comment("총 주문 아이템 - B2B")
     var orderItemB2bTotalQty: Int,
-
-) : BaseEntity() {
-}
+) : BaseCreateEntity()

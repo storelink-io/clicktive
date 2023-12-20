@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface RawCampaignKeywordRepository : JpaRepository<RawCampaignKeyword, Long> {
+    fun deleteAllByBrandNoAndCountryNoAndMonth(brandNo: Int, countryNo: Int, month: String)
 }

@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ResultFileRepository : JpaRepository<ResultFile, Long>
+interface ResultFileRepository : JpaRepository<ResultFile, Long> {
+    fun deleteAllByBrandNoAndCountryNoAndMonthAndResultFileTypeCd(brandNo: Long, countryNo: Long, month: String, resultFileTypeCd: String)
+}

@@ -22,7 +22,7 @@ class RawSales(
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("주문 일자")
     var purchaseDate: String?,

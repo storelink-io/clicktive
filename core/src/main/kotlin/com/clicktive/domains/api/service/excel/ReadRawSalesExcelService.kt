@@ -1,24 +1,20 @@
 package com.clicktive.domains.api.service.excel
 
-import com.clicktive.domains.api.constant.code.ResultFileTypeCd
 import com.clicktive.domains.api.data.entity.ad.RawSales
 import com.clicktive.domains.api.constant.excel.CellDataConstants
 import com.clicktive.domains.api.data.dto.excel.ReadExcelRequest
+import com.clicktive.domains.api.data.enum.ad.ResultFileTypeCd
 import com.clicktive.domains.api.service.ad.ResultFileService
 import com.clicktive.domains.api.service.ad.SalesService
-import com.clicktive.framework.exception.ServiceException
 import com.clicktive.framework.util.Mapper
+import com.clicktive.framework.util.excel.ConvertExcelValue.toDate
 import com.clicktive.framework.util.excel.ConvertExcelValue.toFloat
 import com.clicktive.framework.util.excel.ConvertExcelValue.toInt
-import com.clicktive.framework.util.excel.ConvertExcelValue.toString
 import com.clicktive.framework.util.excel.ReadExcel
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import java.io.FileInputStream
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @Service
 class ReadRawSalesExcelService(
@@ -37,14 +33,12 @@ class ReadRawSalesExcelService(
         val entityData = readExcel.getEntityData(sheet, cellData)
 
         val entity = entityData.mapNotNull { data ->
-            val purchaseDate = getFormattedPurchaseDate(data?.get("purchaseDate").toString())
-
             RawSales(
                 rawSalesNo = null,
                 brandNo = readExcelRequest.brandNo,
                 countryNo = readExcelRequest.countryNo,
                 month = readExcelRequest.month,
-                purchaseDate = purchaseDate,
+                purchaseDate = data?.get("purchaseDate").toDate(),
                 salesAmt = data?.get("salesAmt").toInt(),
                 salesB2bAmt = data?.get("salesB2bAmt").toInt(),
                 orderQty = data?.get("orderQty").toInt(),
@@ -102,12 +96,5 @@ class ReadRawSalesExcelService(
         )
 
         return rowNum
-    }
-
-    private fun getFormattedPurchaseDate(purchaseDate: String): String? {
-        val extractedPurchaseDate = purchaseDate.replace(".", "").replace(" ", "")
-        val parsedPurchaseDate = LocalDate.parse(extractedPurchaseDate, DateTimeFormatter.ofPattern("yyMMdd"))
-
-        return parsedPurchaseDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 }

@@ -23,7 +23,7 @@ class RawOrder (
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("아마존 주문 아이디")
     var amazonOrerId: String?,

@@ -22,7 +22,7 @@ class RawStock (
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("sku")
     var sku: String?,
