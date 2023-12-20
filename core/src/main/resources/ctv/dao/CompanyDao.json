@@ -1,0 +1,11 @@
+[
+    {
+        "id": "getAllCompanies",
+        "description": "회사 정보를 조회함",
+        "query": [
+            "SELECT * ",
+            "FROM ctv_mb_company ",
+            "WHERE 1=1 "
+        ]
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "id": "getAllBrands",
+        "description": "브랜드 정보를 조회함",
+        "query": [
+            "SELECT * ",
+            "FROM ctv_mb_brand ",
+            "WHERE 1=1 "
+        ]
+    }
+]

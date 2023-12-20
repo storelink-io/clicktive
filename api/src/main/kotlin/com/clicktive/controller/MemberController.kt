@@ -32,7 +32,7 @@ class MemberController(
 ) : BaseController() {
     @PostMapping("/sign-in", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     @Operation(
-        description = "회원 로그인"
+        summary = "회원 로그인"
     )
     fun loginMember(
         @Valid @ModelAttribute loginRequest: LoginRequest
@@ -45,7 +45,7 @@ class MemberController(
 
     @PostMapping("/sign-up", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     @Operation(
-        description = "회원 가입"
+        summary = "회원 가입"
     )
     fun createMember(
         @Valid @ModelAttribute memberRegisterRequest: MemberRegisterRequest
@@ -56,7 +56,7 @@ class MemberController(
 
     @GetMapping("/me")
     @Operation(
-        description = "로그인한 회원 정보"
+        summary = "로그인한 회원 정보"
     )
     fun getMemberInfo(
         @Parameter(hidden = true) @CurrentMember currentMember: Member

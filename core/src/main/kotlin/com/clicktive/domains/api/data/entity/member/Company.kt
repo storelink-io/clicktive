@@ -16,7 +16,7 @@ class Company (
     var companyNo: Long?,
 
     @Comment("회사명")
-    var comapnyName: String?,
+    var companyName: String?,
 
     @Comment("회사 상태 코드")
     var companyStateCd: String?,

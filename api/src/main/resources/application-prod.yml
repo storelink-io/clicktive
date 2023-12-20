@@ -36,3 +36,9 @@ springdoc:
 logging:
   level:
     com.clicktive: debug
+
+app:
+  config:
+    refreshToken: ctv-refreshToken
+    dao-locations: /ctv/dao/
+    show-query: false

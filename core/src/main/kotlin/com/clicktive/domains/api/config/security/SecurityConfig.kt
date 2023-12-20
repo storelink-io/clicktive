@@ -34,6 +34,7 @@ class SecurityConfig(
                 .requestMatchers("/ctv/v1/ad/**").permitAll()
                 .requestMatchers("/ctv/v1/members/sign-up").permitAll()
                 .requestMatchers("/ctv/v1/members/sign-in").permitAll()
+                .requestMatchers("/ctv/v1/commons/**").permitAll()
                 .anyRequest().authenticated()
         }
         .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
