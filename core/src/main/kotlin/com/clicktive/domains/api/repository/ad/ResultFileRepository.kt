@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ResultFileRepository : JpaRepository<ResultFile, Long> {
+    fun findAllByBrandNoAndCountryNoAndMonth(brandNo: Long, countryNo: Long, month: String): List<ResultFile>
     fun deleteAllByBrandNoAndCountryNoAndMonthAndResultFileTypeCd(brandNo: Long, countryNo: Long, month: String, resultFileTypeCd: String)
 }
