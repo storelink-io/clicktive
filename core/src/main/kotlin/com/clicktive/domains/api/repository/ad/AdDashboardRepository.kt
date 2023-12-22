@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AdDashboardRepository : JpaRepository<AdDashboard, Long> {
+    fun findByBrandNoAndCountryNoAndMonth(brandNo: Long, countryNo: Long, month: String): AdDashboard?
 }

@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -37,7 +37,7 @@ class RawStock (
     var productName: String?,
 
     @Comment("상품 상태")
-    var condition: String?,
+    var productCondition: String?,
 
     @Comment("판매가")
     var priceAmt: Float,
@@ -85,7 +85,5 @@ class RawStock (
     var afnFutureReservedSupplyQty: Int,
 
     @Comment("afn 구매 가능 공급량")
-    var afnFutureBuySupplyQty: Int,
-
-) : BaseEntity() {
-}
+    var afnFutureBuySupplyQty: Int
+) : BaseCreateEntity()

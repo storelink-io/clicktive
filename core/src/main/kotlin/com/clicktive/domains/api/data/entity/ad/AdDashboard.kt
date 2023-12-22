@@ -22,7 +22,7 @@ class AdDashboard (
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("월간 운영 코멘트")
     var operationMemo: String?,
@@ -37,7 +37,5 @@ class AdDashboard (
     var salesMemo: String?,
 
     @Comment("키워드 광고 코멘트")
-    var adKeywordMemo: String?,
-
-) : BaseEntity() {
-}
+    var adKeywordMemo: String?
+) : BaseEntity()
