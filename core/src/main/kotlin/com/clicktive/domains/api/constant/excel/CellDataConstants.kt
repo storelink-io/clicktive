@@ -192,9 +192,65 @@ object CellDataConstants {
         CellData(cellName = listOf("7일 기타 SKU 판매", "7 Day Other SKU Sales"), cellType = CellType.NUMERIC, isRequired = true, columnName = "etcSkuSales7Amt")
     )
 
-    val RawOrderCellData = listOf<CellData>()
+    val RawOrderCellData = listOf(
+        CellData(cellName = listOf("amazon-order-id", "아마존 주문 ID"), cellType = CellType.STRING, isRequired = true, columnName = "amazonOrerId"),
+        CellData(cellName = listOf("merchant-order-id"), cellType = CellType.STRING, isRequired = true, columnName = "merchantOrderId"),
+        CellData(cellName = listOf("purchase-date"), cellType = CellType.STRING, isRequired = true, columnName = "purchaseDate"),
+        CellData(cellName = listOf("last-updated-date"), cellType = CellType.STRING, isRequired = true, columnName = "updateDate"),
+        CellData(cellName = listOf("order-status"), cellType = CellType.STRING, isRequired = true, columnName = "orderStatus"),
+        CellData(cellName = listOf("fulfillment-channel"), cellType = CellType.STRING, isRequired = true, columnName = "fulfillmentChannel"),
+        CellData(cellName = listOf("sales-channel"), cellType = CellType.STRING, isRequired = true, columnName = "salesChannel"),
+        CellData(cellName = listOf("order-channel"), cellType = CellType.STRING, isRequired = false, columnName = "orderChannel"),
+        CellData(cellName = listOf("url"), cellType = CellType.STRING, isRequired = false, columnName = "url"),
+        CellData(cellName = listOf("ship-service-level"), cellType = CellType.STRING, isRequired = true, columnName = "shipServiceLevel"),
+        CellData(cellName = listOf("product-name"), cellType = CellType.STRING, isRequired = true, columnName = "productName"),
+        CellData(cellName = listOf("sku"), cellType = CellType.STRING, isRequired = true, columnName = "sku"),
+        CellData(cellName = listOf("asin"), cellType = CellType.STRING, isRequired = true, columnName = "asin"),
+        CellData(cellName = listOf("item-status"), cellType = CellType.STRING, isRequired = true, columnName = "itemState"),
+        CellData(cellName = listOf("quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "orderQty"),
+        CellData(cellName = listOf("currency"), cellType = CellType.STRING, isRequired = false, columnName = "currency"),
+        CellData(cellName = listOf("item-price"), cellType = CellType.NUMERIC, isRequired = false, columnName = "priceAmt"),
+        CellData(cellName = listOf("item-tax"), cellType = CellType.NUMERIC, isRequired = false, columnName = "tax"),
+        CellData(cellName = listOf("shipping-price"), cellType = CellType.NUMERIC, isRequired = false, columnName = "shippingPriceAmt"),
+        CellData(cellName = listOf("shipping-tax"), cellType = CellType.NUMERIC, isRequired = false, columnName = "shippingTax"),
+        CellData(cellName = listOf("gift-wrap-price"), cellType = CellType.NUMERIC, isRequired = false, columnName = "giftWrapPriceAmt"),
+        CellData(cellName = listOf("gift-wrap-tax"), cellType = CellType.NUMERIC, isRequired = false, columnName = "giftWrapTaxAmt"),
+        CellData(cellName = listOf("item-promotion-discount"), cellType = CellType.NUMERIC, isRequired = false, columnName = "discount"),
+        CellData(cellName = listOf("ship-promotion-discount"), cellType = CellType.NUMERIC, isRequired = false, columnName = "shipDiscount"),
+        CellData(cellName = listOf("ship-city"), cellType = CellType.STRING, isRequired = true, columnName = "shipCity"),
+        CellData(cellName = listOf("ship-state"), cellType = CellType.STRING, isRequired = true, columnName = "shipState"),
+        CellData(cellName = listOf("ship-postal-code"), cellType = CellType.STRING, isRequired = true, columnName = "postalCode"),
+        CellData(cellName = listOf("ship-country"), cellType = CellType.STRING, isRequired = true, columnName = "shipCountry"),
+        CellData(cellName = listOf("promotion-ids"), cellType = CellType.STRING, isRequired = false, columnName = "promotionIds"),
+        CellData(cellName = listOf("is-business-order"), cellType = CellType.BOOLEAN, isRequired = true, columnName = "businessOrderYn"),
+        CellData(cellName = listOf("purchase-order-number"), cellType = CellType.STRING, isRequired = false, columnName = "orderNumber"),
+        CellData(cellName = listOf("price-designation"), cellType = CellType.STRING, isRequired = false, columnName = "priceFixed"),
+        CellData(cellName = listOf("signature-confirmation-recommended"), cellType = CellType.BOOLEAN, isRequired = true, columnName = "confirmSignatureYn")
+    )
 
-    val RawStockCellData = listOf<CellData>()
+    val RawStockCellData = listOf(
+        CellData(cellName = listOf("sku"), cellType = CellType.STRING, isRequired = true, columnName = "sku"),
+        CellData(cellName = listOf("fnsku"), cellType = CellType.STRING, isRequired = true, columnName = "fnsku"),
+        CellData(cellName = listOf("asin"), cellType = CellType.STRING, isRequired = true, columnName = "asin"),
+        CellData(cellName = listOf("product-name"), cellType = CellType.STRING, isRequired = true, columnName = "productName"),
+        CellData(cellName = listOf("condition"), cellType = CellType.STRING, isRequired = true, columnName = "productCondition"),
+        CellData(cellName = listOf("your-price"), cellType = CellType.NUMERIC, isRequired = true, columnName = "priceAmt"),
+        CellData(cellName = listOf("mfn-listing-exists"), cellType = CellType.STRING, isRequired = true, columnName = "mfnYn"),
+        CellData(cellName = listOf("mfn-fulfillable-quantity"), cellType = CellType.NUMERIC, isRequired = false, columnName = "mfnQty"),
+        CellData(cellName = listOf("afn-listing-exists"), cellType = CellType.STRING, isRequired = true, columnName = "afnYn"),
+        CellData(cellName = listOf("afn-warehouse-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnWareQty"),
+        CellData(cellName = listOf("afn-fulfillable-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnQty"),
+        CellData(cellName = listOf("afn-unsellable-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnUnsellQty"),
+        CellData(cellName = listOf("afn-reserved-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnReservedQty"),
+        CellData(cellName = listOf("afn-total-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnTotalQty"),
+        CellData(cellName = listOf("per-unit-volume"), cellType = CellType.NUMERIC, isRequired = true, columnName = "perUnitVolume"),
+        CellData(cellName = listOf("afn-inbound-working-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnWorkQty"),
+        CellData(cellName = listOf("afn-inbound-shipped-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnShipQty"),
+        CellData(cellName = listOf("afn-inbound-receiving-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnReceiveQty"),
+        CellData(cellName = listOf("afn-researching-quantity"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnResearchQty"),
+        CellData(cellName = listOf("afn-reserved-future-supply"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnFutureReservedSupplyQty"),
+        CellData(cellName = listOf("afn-future-supply-buyable"), cellType = CellType.NUMERIC, isRequired = true, columnName = "afnFutureBuySupplyQty")
+    )
 }
 
 

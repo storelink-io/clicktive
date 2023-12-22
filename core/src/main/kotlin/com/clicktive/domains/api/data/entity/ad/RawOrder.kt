@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -122,7 +122,5 @@ class RawOrder (
     var priceFixed: String?,
 
     @Comment("서명 확인 여부")
-    var confirmSignatureYn: String?,
-
-) : BaseEntity() {
-}
+    var confirmSignatureYn: String?
+) : BaseCreateEntity()

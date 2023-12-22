@@ -2,6 +2,7 @@ package com.clicktive.framework.util.excel
 
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 
@@ -9,6 +10,10 @@ import java.util.Date
 object ConvertExcelValue {
     fun Any?.toString(): String {
         return this.takeIf { it != null }?.let { this as String } ?: ""
+    }
+
+    fun Any?.toNy(): String {
+        return (this.toString().takeIf { it.isNotEmpty() }?.let { it[0] } ?: "N").toString()
     }
 
     fun Any?.toInt(): Int {
@@ -35,5 +40,14 @@ object ConvertExcelValue {
                 }
             }
         }
+    }
+
+    fun Any?.toLocalDateTime(): LocalDateTime? {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
+        return LocalDateTime.parse(this.takeIf { it != null }?.let { this as String }, formatter)
+    }
+
+    fun Any?.toBoolean(): String {
+        return (this.takeIf { it != null }?.let { this as Boolean } ?: false).takeIf { it }?.let { "Y" } ?: "N"
     }
 }

@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
+import java.io.FileInputStream
 
 @Service
 class ReadRawCampaignKeywordExcelService(
@@ -25,10 +26,12 @@ class ReadRawCampaignKeywordExcelService(
     private val campaignKeywordService: CampaignKeywordService
 ) {
     fun readRawCampaignKeyword(
-        file: MultipartFile,
+        file: MultipartFile?,
         readExcelRequest: ReadExcelRequest
     ): Int {
-        val workbook: Workbook = XSSFWorkbook(file.inputStream)
+//        val file_ = FileInputStream("/Users/jenni/Desktop/Clicktive_Raw/05_keyword_RAW.xlsx")
+//        val workbook: Workbook = XSSFWorkbook(file_)
+        val workbook: Workbook = XSSFWorkbook(file!!.inputStream)
         val sheet = workbook.getSheetAt(0)
 
         val cellData =

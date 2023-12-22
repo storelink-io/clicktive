@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
 
-// TODO set createDt, createMemberNo
+// TODO set createDt, createMemberNo, modifyDt, modifyMemberNo
+// TODO 추후 file 필수값으로 변경 예정, 테스트 진행중
 @RestController
 @RequestMapping("/ctv/v1/ad/raw")
 class AdRowController(
@@ -29,7 +30,7 @@ class AdRowController(
     @Operation(summary = "판매 데이터 - 매출")
     @PostMapping("/sales")
     fun sales(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawSalesExcelService.readRawSales(
@@ -44,7 +45,7 @@ class AdRowController(
     @Operation(summary = "판매 데이터 - 상품")
     @PostMapping("/sales/product")
     fun salesProduct(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawSalesProductExcelService.readRawSalesProduct(
@@ -59,7 +60,7 @@ class AdRowController(
     @Operation(summary = "광고 데이터 - 상품")
     @PostMapping("/campaign/product")
     fun campaignProduct(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawCampaignProductExcelService.readRawCampaignProduct(
@@ -74,7 +75,7 @@ class AdRowController(
     @Operation(summary = "광고 데이터 - 캠페인")
     @PostMapping("/campaign")
     fun campaign(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawCampaignExcelService.readRawCampaign(
@@ -89,7 +90,7 @@ class AdRowController(
     @Operation(summary = "광고 데이터 - 키워드")
     @PostMapping("/campaign/keyword")
     fun campaignKeyword(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawCampaignKeywordExcelService.readRawCampaignKeyword(
@@ -104,7 +105,7 @@ class AdRowController(
     @Operation(summary = "주문 처리")
     @PostMapping("/order")
     fun order(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawOrderExcelService.readRawOrder(
@@ -119,7 +120,7 @@ class AdRowController(
     @Operation(summary = "재고 현황")
     @PostMapping("/stock")
     fun stock(
-        @RequestParam file: MultipartFile,
+        @RequestParam file: MultipartFile?,
         @Valid @RequestBody readExcelRequest: ReadExcelRequest
     ): ResponseEntity<ApiResponse<Int>> {
         val rowNum = readRawStockExcelService.readRawStock(

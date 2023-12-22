@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface RawOrderRepository : JpaRepository<RawOrder, Long> {
+    fun findAllByBrandNoAndCountryNoAndMonth(brandNo: Long, countryNo: Long, month: String): List<RawOrder>
     fun deleteAllByBrandNoAndCountryNoAndMonth(brandNo: Long, countryNo: Long, month: String)
 }
