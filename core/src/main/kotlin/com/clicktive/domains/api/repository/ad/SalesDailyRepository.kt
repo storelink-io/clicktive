@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface SalesDailyRepository : JpaRepository<SalesDaily, Long> {
+    fun deleteAllByBrandNoAndCountryNoAndMonth(brandNo: Long, countryNo: Long, month: String)
 }

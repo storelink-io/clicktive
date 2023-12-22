@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CampaignMonthlyRepository : JpaRepository<CampaignMonthly, Long> {
+    fun deleteByBrandNoAndCountryNoAndMonth(brandNo: Long, countryNo: Long, month: String)
 }

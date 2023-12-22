@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -62,6 +62,4 @@ class CampaignDaily (
 
     @Comment("CPM")
     var cpm: Float,
-
-) : BaseEntity() {
-}
+) : BaseCreateEntity()

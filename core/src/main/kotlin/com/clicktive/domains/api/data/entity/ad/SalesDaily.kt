@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -22,7 +22,7 @@ class SalesDaily (
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("주문 일자")
     var purchaseDate: String?,
@@ -60,5 +60,7 @@ class SalesDaily (
     @Comment("평균 판매/주문 아이템")
     var avgSalesAmtRate: Float,
 
-) : BaseEntity() {
-}
+    @Comment("PV")
+    @Transient
+    var pv: Int
+) : BaseCreateEntity()

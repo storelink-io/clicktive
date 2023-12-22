@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.ad
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -22,7 +22,7 @@ class CampaignType (
     var countryNo: Long,
 
     @Comment("대상 월")
-    var month: String?,
+    var month: String,
 
     @Comment("캠페인 유형 코드")
     var campaignTypeCd: String?,
@@ -43,7 +43,5 @@ class CampaignType (
     var ctr: Float,
 
     @Comment("CPC")
-    var cpc: Float,
-
-) : BaseEntity() {
-}
+    var cpc: Float
+) : BaseCreateEntity()
