@@ -1,6 +1,6 @@
 package com.clicktive.domains.api.data.entity.member
 
-import com.clicktive.domains.api.data.entity.BaseEntity
+import com.clicktive.domains.api.data.entity.BaseCreateEntity
 import com.clicktive.framework.springframework.annotation.NoArg
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -27,5 +27,5 @@ class BrandMember (
     @Comment("회원 번호")
     var memberNo: Long,
 
-) : BaseEntity() {
+) : BaseCreateEntity() {
 }

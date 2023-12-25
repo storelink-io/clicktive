@@ -11,4 +11,7 @@ interface MemberRepository : JpaRepository<Member, Long> {
     fun getByMemberNo(memberNo: Long?): Member?
 
     fun getByMemberId(memberId: String): Member?
+
+    @Query("select m from Member m where m.companyNo = :companyNo and m.memberStateCd = '100' ")
+    fun getByCompany(companyNo: Long): MutableList<Member>
 }

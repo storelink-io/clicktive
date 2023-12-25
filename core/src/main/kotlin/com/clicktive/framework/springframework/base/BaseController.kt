@@ -20,7 +20,8 @@ class BaseController(
         "createDt",
         "createMemberNo",
         "modifyDt",
-        "modifyMemberNo"
+        "modifyMemberNo",
+        "memberPw"
     )
 ) {
     @Autowired

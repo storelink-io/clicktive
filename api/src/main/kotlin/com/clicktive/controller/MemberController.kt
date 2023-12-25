@@ -1,6 +1,5 @@
 package com.clicktive.controller
 
-import com.clicktive.domains.api.data.dto.country.CountryResponse
 import com.clicktive.domains.api.data.dto.member.LoginRequest
 import com.clicktive.domains.api.data.dto.member.MemberRegisterRequest
 import com.clicktive.domains.api.data.dto.member.MemberResponse
@@ -66,5 +65,18 @@ class MemberController(
         val memberResponse = Mapper.convert<MemberResponse>(member)
         val excludeProperty = mutableListOf("token", "refreshToken", "tokenDueDt", "refreshTokenDueDt")
         return httpResponse(memberResponse, excludeProperty)
+    }
+
+    @GetMapping("/company")
+    @Operation(
+        summary = "회사에 소속된 회원 리스트"
+    )
+    fun getCompanyMembers(
+        companyNo: Long,
+        @Parameter(hidden = true) @CurrentMember currentMember: Member
+    ): ApiResponse<MutableList<MemberResponse>> {
+        val membersByCompany = memberRepository.getByCompany(companyNo)
+        val memberResponse   = Mapper.convert<MutableList<MemberResponse>>(membersByCompany)
+        return httpResponse(memberResponse)
     }
 }

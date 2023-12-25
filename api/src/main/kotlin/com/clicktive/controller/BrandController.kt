@@ -1,12 +1,10 @@
 package com.clicktive.controller
 
 import com.clicktive.domains.api.data.dao.brand.BrandDao
+import com.clicktive.domains.api.data.dto.brand.BrandMemberRequest
 import com.clicktive.domains.api.data.dto.brand.BrandRequest
 import com.clicktive.domains.api.data.dto.brand.BrandResponse
 import com.clicktive.domains.api.data.dto.brand.SearchBrandRequest
-import com.clicktive.domains.api.data.dto.company.CompanyRequest
-import com.clicktive.domains.api.data.dto.company.CompanyResponse
-import com.clicktive.domains.api.data.dto.country.CountryResponse
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.repository.member.BrandRepository
 import com.clicktive.domains.api.service.brand.BrandService
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/ctv/v1/brands")
 class BrandController(
-    private val brandRepository: BrandRepository,
     private val brandDao: BrandDao,
     private val brandService: BrandService
 ): BaseController() {
@@ -60,6 +57,31 @@ class BrandController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<BrandResponse>> {
         val brands = brandDao.findMemberBrands(currentMember.memberNo!!)
+        val tempResponse: MutableList<BrandResponse> = Mapper.convert(brands)
+        return httpResponse(tempResponse)
+    }
+
+    @PostMapping("/member", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
+    @Operation(
+        summary = "브랜드 권한을 가질 회원 등록"
+    )
+    fun saveBrandMembers(
+        @ModelAttribute req: BrandMemberRequest,
+        @Parameter(hidden = true) @CurrentMember currentMember: Member
+    ): ApiResponse<Nothing> {
+        brandService.saveBrandMember(req, currentMember.memberNo!!)
+        return httpResponse()
+    }
+
+    @GetMapping("/country")
+    @Operation(
+        summary = "국가별 브랜드 정보 리스트"
+    )
+    fun getCountryBrands(
+        countryNo: Long,
+        @Parameter(hidden = true) @CurrentMember currentMember: Member
+    ): ApiResponse<List<BrandResponse>> {
+        val brands = brandDao.findCountryBrands(countryNo)
         val tempResponse: MutableList<BrandResponse> = Mapper.convert(brands)
         return httpResponse(tempResponse)
     }

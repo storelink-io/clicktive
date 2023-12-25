@@ -17,5 +17,15 @@
             "     inner join ctv_mb_brand b on m.brandNo = b.brandNo and b.brandStateCd = '100' ",
             "where m.memberNo = :memberNo "
         ]
+    },
+    {
+        "id": "findCountryBrands",
+        "description": "국가별 브랜드 정보를 조회함",
+        "query": [
+            "select b.* ",
+            "from ctv_mb_brand_country m ",
+            "     inner join ctv_mb_brand b on m.brandNo = b.brandNo and b.brandStateCd = '100' ",
+            "where m.countryNo = :countryNo "
+        ]
     }
 ]

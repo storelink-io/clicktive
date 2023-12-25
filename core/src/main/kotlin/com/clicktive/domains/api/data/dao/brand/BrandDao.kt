@@ -49,4 +49,16 @@ class BrandDao(
             rowMapper
         )
     }
+
+    fun findCountryBrands(countryNo: Long): MutableList<Brand> {
+        val params = MapSqlParameterSource("countryNo", countryNo)
+
+        val queryBuilder = queryBuilder("findCountryBrands")
+
+        return jdbcTemplate.query(
+            queryBuilder.toString(),
+            params,
+            rowMapper
+        )
+    }
 }
