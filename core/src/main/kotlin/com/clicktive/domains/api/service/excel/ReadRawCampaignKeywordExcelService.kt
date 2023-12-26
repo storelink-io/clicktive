@@ -86,8 +86,7 @@ class ReadRawCampaignKeywordExcelService(
             val etcSkuSales7Amt = data.map { it.etcSkuSales7Amt }.sum()
 
             val ctr = (clickNum.takeIf { it > 0 }?.let { salesTotal7Amt.div(clickNum) } ?: 0).toFloat()
-            // TODO 광고비가 뭐지?
-            val cpc = (clickNum.takeIf { it > 0 }?.let { 0.div(clickNum) } ?: 0).toFloat()
+            val cpc = (clickNum.takeIf { it > 0 }?.let { expenseAmt.div(clickNum) } ?: 0).toFloat()
             val acos = (salesTotal7Amt.takeIf { it > 0 }?.let { (expenseAmt.times(100)).div(salesTotal7Amt.times(100)) } ?: 0).toFloat()
             val roas = salesTotal7Amt.div(expenseAmt).times(100)
             val conversion7Rate = (clickNum.takeIf { it > 0 }?.let { orderToal7Num.div(clickNum) } ?: 0).toFloat()
@@ -104,7 +103,8 @@ class ReadRawCampaignKeywordExcelService(
                 currency = firstData.currency,
                 campaignName = firstData.campaignName,
                 campaignGroup = firstData.campaignGroup,
-                // TODO keyword 저장할 필요 없는지?
+                // TODO keyword 저장할 필요 없는지? 저장해야 할듯~
+                keyword = firstData.keyword,
                 sku = null,
                 asin = null,
                 // TODO 미사용 데이터 확인 필요
