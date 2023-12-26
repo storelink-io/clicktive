@@ -2,6 +2,7 @@ package com.clicktive.framework.util
 
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
@@ -64,6 +65,13 @@ class DateUtils {
             var days = ChronoUnit.DAYS.between(fromLocalDate, endLocalDate)
             if (isFromToday) days += 1
             return days.toInt()
+        }
+
+        fun getPreviousMonth(month: String): String {
+            val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
+            val yearMonth = YearMonth.parse(month, dateTimeFormatter)
+            val previousYearMonth = yearMonth.minusMonths(1)
+            return previousYearMonth.format(dateTimeFormatter)
         }
     }
 }

@@ -46,7 +46,6 @@ class ReadRawStockExcelService(
                 fnsku = data?.get("fnsku").toString(),
                 asin = data?.get("asin").toString(),
                 productName = data?.get("productName").toString(),
-                // TODO condition으로 하면 insert error 발생 일단 임시 조치
                 productCondition = data?.get("productCondition").toString(),
                 priceAmt = data?.get("priceAmt").toFloat(),
                 mfnYn = data?.get("mfnYn").toNy(),

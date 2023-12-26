@@ -1,5 +1,6 @@
 package com.clicktive.domains.api.service.ad
 
+import com.clicktive.domains.api.data.entity.ad.CampaignDaily
 import com.clicktive.domains.api.repository.ad.CampaignDailyRepository
 import org.springframework.stereotype.Service
 
@@ -7,4 +8,11 @@ import org.springframework.stereotype.Service
 class GetCampaignDailyService(
     private val campaignDailyRepository: CampaignDailyRepository
 ) {
+    fun getCampaignDaily(
+        brandNo: Long,
+        countryNo: Long,
+        month: String
+    ): List<CampaignDaily> {
+        return campaignDailyRepository.findAllByBrandNoAndCountryNoAndMonth(brandNo = brandNo, countryNo = countryNo, month = month)
+    }
 }

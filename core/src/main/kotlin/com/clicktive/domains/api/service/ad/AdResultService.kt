@@ -25,9 +25,9 @@ class AdResultService(
         val countryNo = resultFileRequest.countryNo
         val month = resultFileRequest.month
 
-        // TODO year은?
-        val firstDayOfMonth = YearMonth.of(2023, month.toInt()).atDay(1)
-        val lastDayOfMonth = YearMonth.of(2023, month.toInt()).atEndOfMonth()
+        val yearMonth = YearMonth.of(resultFileRequest.month.substring(0, 4).toInt(), resultFileRequest.month.substring(5).toInt())
+        val firstDayOfMonth = yearMonth.atDay(1)
+        val lastDayOfMonth = yearMonth.atEndOfMonth()
 
         val salesDaily = getSalesDaily(
             brandNo = brandNo,
