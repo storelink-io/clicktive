@@ -102,8 +102,8 @@ class DashboardController(
     }
 
     @Operation(summary = "키워드 광고 TOP 10")
-    @GetMapping("/campain/keywords")
-    fun getCampainKeywords(
+    @GetMapping("/campaign/keywords")
+    fun getCampaignKeywords(
         @RequestParam("brandNo", required = true) brandNo: Long,
         @RequestParam("countryNo", required = true) countryNo: Long,
         @RequestParam("month", required = true) month: String

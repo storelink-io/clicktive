@@ -21,7 +21,6 @@ class GetCampaignKeywordService(
         )
     }
 
-
     // TODO 키워드 광고 TOP 10 구분 내용 이해 X 일단 그냥 키워드를 기준으로 group by 함
     fun getCampaignKeywordTop10Response(
         brandNo: Long,

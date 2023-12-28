@@ -15,4 +15,11 @@ class GetCampaignDailyService(
     ): List<CampaignDaily> {
         return campaignDailyRepository.findAllByBrandNoAndCountryNoAndMonth(brandNo = brandNo, countryNo = countryNo, month = month)
     }
+
+    fun getCampaignDaily(
+        brandNo: Long,
+        countryNo: Long
+    ): List<CampaignDaily> {
+        return campaignDailyRepository.findAllByBrandNoAndCountryNo(brandNo = brandNo, countryNo = countryNo)
+    }
 }

@@ -1,11 +1,9 @@
-package com.clicktive.domains.api.data.dto.ad
+package com.clicktive.domains.api.data.dto
 
 import com.clicktive.domains.api.data.entity.ad.RawSalesProduct
 import io.swagger.v3.oas.annotations.media.Schema
 
-data class SalesProductTop10Response(
-    @Schema(description = "순위", required = true)
-    val rank: Int,
+data class SalesProductResponse(
     @Schema(description = "ASIN", required = false)
     val asin: String?,
     @Schema(description = "상품명", required = false)
@@ -20,8 +18,7 @@ data class SalesProductTop10Response(
     @Schema(description = "페이지 조회", required = true)
     val pageViewTotalNum: Int
 ) {
-    constructor(rank: Int, rawSalesProduct: RawSalesProduct): this(
-        rank = rank,
+    constructor(rawSalesProduct: RawSalesProduct): this(
         asin = rawSalesProduct.asin,
         productName = rawSalesProduct.productName,
         salesAmt = rawSalesProduct.salesAmt,

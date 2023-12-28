@@ -30,8 +30,10 @@ class GetCampaignTypeService(
         val campaignType = getCampaignType(brandNo = brandNo, countryNo = countryNo, month = month)
 
         return campaignTypeCd.map { (detailCode, _) ->
-            val ct = campaignType.singleOrNull { it.campaignTypeCd == detailCode }
-            ct.takeIf { it != null }?.let { CampaignTypeResponse(campaignType = it) } ?: CampaignTypeResponse(campaignTypeCd = detailCode)
+            val campaign = campaignType.singleOrNull { it.campaignTypeCd == detailCode }
+            campaign.takeIf { it != null }?.let { CampaignTypeResponse(campaignType = it) } ?: CampaignTypeResponse(
+                campaignTypeCd = detailCode
+            )
         }
     }
 }
