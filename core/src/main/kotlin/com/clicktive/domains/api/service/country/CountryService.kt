@@ -27,6 +27,7 @@ class CountryService (
             country.currencyName   = request.currencyName
             country.currency       = request.currency
             country.countryStateCd = request.countryStateCd.code
+            country.exchangeRate   = request.exchangeRate
             country.modifyDt       = LocalDateTime.now()
             country.modifyMemberNo = memberNo
         }

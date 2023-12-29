@@ -1,7 +1,9 @@
 package com.clicktive.controller
 
+import com.clicktive.domains.api.data.dao.member.MemberDao
 import com.clicktive.domains.api.data.dto.member.LoginRequest
 import com.clicktive.domains.api.data.dto.member.MemberRegisterRequest
+import com.clicktive.domains.api.data.dto.member.MemberRequest
 import com.clicktive.domains.api.data.dto.member.MemberResponse
 import com.clicktive.domains.api.data.entity.member.Member
 import com.clicktive.domains.api.process.member.SignInProcess
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/ctv/v1/members")
 class MemberController(
+    private val memberDao: MemberDao,
     private val signInProcess: SignInProcess,
     private val memberService: MemberService,
     private val memberRepository: MemberRepository
@@ -77,6 +80,19 @@ class MemberController(
     ): ApiResponse<MutableList<MemberResponse>> {
         val membersByCompany = memberRepository.getByCompany(companyNo)
         val memberResponse   = Mapper.convert<MutableList<MemberResponse>>(membersByCompany)
+        return httpResponse(memberResponse)
+    }
+
+    @GetMapping("/members")
+    @Operation(
+        summary = "회원 정보 검색"
+    )
+    fun findAllMembers(
+        @ModelAttribute memberRequest: MemberRequest,
+        @Parameter(hidden = true) @CurrentMember currentMember: Member
+    ): ApiResponse<MutableList<MemberResponse>> {
+        val members = memberDao.findAllMembers(memberRequest)
+        val memberResponse   = Mapper.convert<MutableList<MemberResponse>>(members)
         return httpResponse(memberResponse)
     }
 }

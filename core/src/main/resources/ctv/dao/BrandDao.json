@@ -1,6 +1,6 @@
 [
     {
-        "id": "getAllBrands",
+        "id": "findAllBrands",
         "description": "브랜드 정보를 조회함",
         "query": [
             "SELECT * ",

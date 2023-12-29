@@ -19,7 +19,7 @@ class BrandDao(
     fun getAllBrands(brandName: String?, brandStateCd: String?): MutableList<Brand> {
         val params = MapSqlParameterSource()
 
-        val queryBuilder = queryBuilder("getAllBrands")
+        val queryBuilder = queryBuilder("findAllBrands")
 
         if (CommonUtils.isNotNull(brandName)) {
             params.addValue("brandName", brandName)

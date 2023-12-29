@@ -27,4 +27,6 @@ class Country (
     @Comment("국가 상태 코드")
     var countryStateCd: String?,
 ) : BaseEntity() {
+    @Comment("환율")
+    var exchangeRate: Double? = null
 }

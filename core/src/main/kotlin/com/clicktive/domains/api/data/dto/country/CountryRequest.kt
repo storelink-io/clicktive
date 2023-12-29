@@ -10,6 +10,7 @@ class CountryRequest (
     var currencyName: String, //통화 명
     var currency: String, //통화
     var countryStateCd: CountryStateEnum, //국가 상태 코드
+    val exchangeRate: Double? = null
 )
 
 @NoArg
