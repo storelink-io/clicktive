@@ -1,0 +1,11 @@
+[
+  {
+    "id": "getAllRawCampaign",
+    "description": "RAW 광고 캠페인 정보를 조회홤",
+    "query": [
+      "SELECT * ",
+      "FROM ctv_ad_raw_campaign ",
+      "WHERE 1=1 "
+    ]
+  }
+]

@@ -42,7 +42,7 @@ class RawCampaignKeyword(
     @Comment("광고 그룹 이름")
     var campaignGroup: String?,
 
-    @Comment("시작 날짜")
+    @Comment("키워드")
     var keyword: String?,
 
     @Comment("광고된 SKU")

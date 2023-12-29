@@ -1,19 +1,22 @@
 package com.clicktive.domains.api.service.ad
 
+import com.clicktive.domains.api.data.dao.ad.RawCampaignDao
 import com.clicktive.domains.api.data.dto.ad.CampaignResponse
+import com.clicktive.domains.api.data.dto.ad.CampaignSummeryResponse
+import com.clicktive.domains.api.data.dto.ad.RawCampaignResponse
 import com.clicktive.domains.api.data.dto.ad.DashboardValue
 import com.clicktive.domains.api.data.entity.ad.RawCampaign
 import com.clicktive.domains.api.repository.ad.RawCampaignRepository
 import com.clicktive.framework.exception.ServiceException
 import com.clicktive.framework.util.DateUtils.Companion.getPreviousMonth
-import io.swagger.v3.oas.annotations.media.Schema
 import org.springframework.stereotype.Service
 
 @Service
 class GetCampaignService(
     private val rawCampaignRepository: RawCampaignRepository,
     private val getCampaignMonthlyService: GetCampaignMonthlyService,
-    private val getCampaignDailyService: GetCampaignDailyService
+    private val getCampaignDailyService: GetCampaignDailyService,
+    private val rawCampaignDao: RawCampaignDao
 ) {
     fun getRawCampaign(
         brandNo: Long,
@@ -139,5 +142,47 @@ class GetCampaignService(
                 currentMonthValues = cpm
             )
         )
+    }
+
+    fun getCampaignSummeryResponse(
+        brandNo: Long,
+        countryNo: Long,
+        month: String,
+        campaignTypeCd: String,
+        portfolioName: String,
+        campaignName: String
+    ): CampaignSummeryResponse {
+        val rawCampaign = rawCampaignDao.getRawCampaign(
+            brandNo = brandNo,
+            countryNo = countryNo,
+            month = month,
+            campaignTypeCd = campaignTypeCd,
+            portfolioName = portfolioName,
+            campaignName = campaignName
+        )
+
+        return CampaignSummeryResponse(
+            rawCampaign = rawCampaign
+        )
+    }
+
+    fun getRawCampaignResponse(
+        brandNo: Long,
+        countryNo: Long,
+        month: String,
+        campaignTypeCd: String,
+        portfolioName: String,
+        campaignName: String
+    ): List<RawCampaignResponse> {
+        return rawCampaignDao.getRawCampaign(
+            brandNo = brandNo,
+            countryNo = countryNo,
+            month = month,
+            campaignTypeCd = campaignTypeCd,
+            portfolioName = portfolioName,
+            campaignName = campaignName
+        ).map {
+            RawCampaignResponse(it)
+        }
     }
 }

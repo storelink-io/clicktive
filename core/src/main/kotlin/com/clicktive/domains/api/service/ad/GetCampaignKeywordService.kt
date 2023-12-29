@@ -1,13 +1,18 @@
 package com.clicktive.domains.api.service.ad
 
+import com.clicktive.domains.api.data.dao.ad.RawCampaignKeywordDao
 import com.clicktive.domains.api.data.dto.ad.CampaignKeywordTop10Response
+import com.clicktive.domains.api.data.dto.ad.RawCampaignKeywordMonthlyResponse
+import com.clicktive.domains.api.data.dto.ad.RawCampaignKeywordRequest
+import com.clicktive.domains.api.data.dto.ad.RawCampaignKeywordResponse
 import com.clicktive.domains.api.data.entity.ad.RawCampaignKeyword
 import com.clicktive.domains.api.repository.ad.RawCampaignKeywordRepository
 import org.springframework.stereotype.Service
 
 @Service
 class GetCampaignKeywordService(
-    private val rawCampaignKeywordRepository: RawCampaignKeywordRepository
+    private val rawCampaignKeywordRepository: RawCampaignKeywordRepository,
+    private val rawCampaignKeywordDao: RawCampaignKeywordDao
 ) {
     fun getRawCampaignKeyword(
         brandNo: Long,
@@ -34,6 +39,36 @@ class GetCampaignKeywordService(
         )
         return rawCampaignKeyword.sortedByDescending { it.expenseAmt }.take(10).mapIndexed { index, it ->
             CampaignKeywordTop10Response(rank = (index + 1), rawCampaignKeyword = it)
+        }
+    }
+
+    fun getRawCampaignKeywordResponse(
+        brandNo: Long,
+        countryNo: Long,
+        month: String,
+        rawCampaignKeywordRequest: RawCampaignKeywordRequest
+    ): List<RawCampaignKeywordResponse> {
+        return rawCampaignKeywordDao.getRawCampaignKeyword(
+            brandNo = brandNo,
+            countryNo = countryNo,
+            month = month,
+            rawCampaignKeywordRequest = rawCampaignKeywordRequest
+        ).map {
+            RawCampaignKeywordResponse(it)
+        }
+    }
+
+    fun getRawCampaignKeywordMonthlyResponse(
+        brandNo: Long,
+        countryNo: Long,
+        keyword: String
+    ): List<RawCampaignKeywordMonthlyResponse> {
+        return rawCampaignKeywordDao.getRawCampaignKeywordMonthly(
+            brandNo = brandNo,
+            countryNo = countryNo,
+            keyword = keyword
+        ).map {
+            RawCampaignKeywordMonthlyResponse(it)
         }
     }
 }

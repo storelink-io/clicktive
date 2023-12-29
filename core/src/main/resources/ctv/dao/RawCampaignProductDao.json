@@ -1,0 +1,19 @@
+[
+  {
+    "id": "getAllCalculateRawCampaignProduct",
+    "description": "RAW 광고 상품 정보를 조회홤",
+    "query": [
+      "SELECT ",
+      "brandNo, countryNo, month, asin, ",
+      "SUM(expenseAmt) AS expenseAmt, SUM(salesTotal7Amt) AS salesTotal7Amt, ",
+      "IFNULL(SUM(salesTotal7Amt) / SUM(expenseAmt) * 100, 0) AS roas, ",
+      "IFNULL(SUM(expenseAmt) / SUM(salesTotal7Amt) * 100, 0) AS acos, ",
+      "SUM(viewNum) AS viewNum, SUM(clickNum) AS clickNum, ",
+      "IFNULL(SUM(clickNum) / SUM(viewNum) * 100, 0) AS ctr, ",
+      "IFNULL(SUM(expenseAmt) / SUM(clickNum) * 100, 0) AS cpc ",
+      "FROM ctv_ad_raw_campaign_product ",
+      "GROUP BY brandNo, countryNo, month, asin ",
+      "HAVING 1=1 "
+    ]
+  }
+]

@@ -71,7 +71,7 @@ class ReadRawCampaignKeywordExcelService(
             )
         }
 
-        val rawCampaignKeyword = entity.groupBy { it.keyword }.map { (keyword, data) ->
+        val rawCampaignKeyword = entity.groupBy { it.keyword?.trim() }.map { (keyword, data) ->
             val firstData = data.first()
 
             val viewNum = data.sumOf { it.viewNum }
@@ -104,7 +104,7 @@ class ReadRawCampaignKeywordExcelService(
                 campaignName = firstData.campaignName,
                 campaignGroup = firstData.campaignGroup,
                 // TODO keyword 저장할 필요 없는지? 저장해야 할듯~
-                keyword = firstData.keyword,
+                keyword = firstData.keyword?.trim(),
                 sku = null,
                 asin = null,
                 // TODO 미사용 데이터 확인 필요

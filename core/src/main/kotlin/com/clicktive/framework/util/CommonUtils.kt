@@ -34,6 +34,14 @@ class CommonUtils {
             return !isNull(source)
         }
 
+        fun isNotNull(source: Int?): Boolean {
+            return source != null
+        }
+
+        fun isNotNull(source: Float?): Boolean {
+            return source != null
+        }
+
         fun generateNumber(number: Int = 999999) = (0..number).random()
             .toString()
             .padStart(number.toString().length, '0')
