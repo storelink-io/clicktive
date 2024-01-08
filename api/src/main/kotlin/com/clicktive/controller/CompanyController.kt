@@ -32,7 +32,7 @@ class CompanyController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CompanyResponse>> {
         val companies = companyDao.findAllCompanies(req.companyName, req.companyStateCd)
-        val tempResponse: MutableList<CompanyResponse> = Mapper.convert(companies)
+        val tempResponse: List<CompanyResponse> = Mapper.convertAll(companies)
         return httpResponse(tempResponse)
     }
 
@@ -69,7 +69,7 @@ class CompanyController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CompanyResponse>> {
         val companies = companyRepository.findAllByCompanyStateCd()
-        val tempResponse: MutableList<CompanyResponse> = Mapper.convert(companies)
+        val tempResponse: List<CompanyResponse> = Mapper.convertAll(companies)
         return httpResponse(tempResponse)
     }
 }

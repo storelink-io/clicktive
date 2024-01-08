@@ -30,7 +30,7 @@ class CountryController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CountryResponse>> {
         val countries = countryRepository.findAllByCountryStateCd()
-        val tempResponse: MutableList<CountryResponse> = Mapper.convert(countries)
+        val tempResponse: List<CountryResponse> = Mapper.convertAll(countries)
         return httpResponse(tempResponse)
     }
 
@@ -67,7 +67,7 @@ class CountryController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CountryResponse>> {
         val countries = countryRepository.findAllByCountryStateCd()
-        val tempResponse: MutableList<CountryResponse> = Mapper.convert(countries)
+        val tempResponse: List<CountryResponse> = Mapper.convertAll(countries)
         return httpResponse(tempResponse)
     }
 
@@ -80,7 +80,7 @@ class CountryController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<CountryResponse>> {
         val countries = countryDao.findBrandCountries(brandNo)
-        val tempResponse: MutableList<CountryResponse> = Mapper.convert(countries)
+        val tempResponse: List<CountryResponse> = Mapper.convertAll(countries)
         return httpResponse(tempResponse)
     }
 }

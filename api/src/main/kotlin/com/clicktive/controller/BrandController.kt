@@ -32,8 +32,8 @@ class BrandController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<BrandResponse>> {
         val brands = brandDao.getAllBrands(req.brandName, req.brandStateCd)
-        val tempResponse: MutableList<BrandResponse> = Mapper.convert(brands)
-        return httpResponse(tempResponse)
+        val tempResponse: List<BrandResponse> = Mapper.convertAll(brands)
+        return httpResponse(tempResponse, mutableListOf("modifyDt", "modifyMemberNo", "createMemberNo"))
     }
 
     @PostMapping("brand", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
@@ -57,7 +57,7 @@ class BrandController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<BrandResponse>> {
         val brands = brandDao.findMemberBrands(currentMember.memberNo!!)
-        val tempResponse: MutableList<BrandResponse> = Mapper.convert(brands)
+        val tempResponse: List<BrandResponse> = Mapper.convertAll(brands)
         return httpResponse(tempResponse)
     }
 
@@ -82,7 +82,7 @@ class BrandController(
         @Parameter(hidden = true) @CurrentMember currentMember: Member
     ): ApiResponse<List<BrandResponse>> {
         val brands = brandDao.findCountryBrands(countryNo)
-        val tempResponse: MutableList<BrandResponse> = Mapper.convert(brands)
+        val tempResponse: List<BrandResponse> = Mapper.convertAll(brands)
         return httpResponse(tempResponse)
     }
 }
